@@ -1,4 +1,5 @@
 import to from "await-to-js";
+import { socket } from '../../server/socket';
 
 // Store
 import { create, update } from "./orden.store";
@@ -6,6 +7,7 @@ import { create, update } from "./orden.store";
 const createOrden = async (data: any) => {
   const [err, newOrden] = await to(create(data));
   if (err) throw err;
+  socket.io.emit('createOrden', newOrden);
   return newOrden;
 }
 

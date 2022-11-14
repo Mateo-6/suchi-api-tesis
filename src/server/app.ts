@@ -3,11 +3,16 @@ import morgan from 'morgan';
 
 import Routes from '../network/index.routes';
 
+import http from 'http';
+import { Server } from "socket.io";
+
 export class App {
   private app: Express;
+  public server: any;
 
   constructor(private port?: number | string) {
     this.app = express();
+    this.server = http.createServer(this.app);
     this.settings();
     this.middleware();
     this.routes();
@@ -27,7 +32,7 @@ export class App {
   }
 
   async listen(): Promise<void> {
-    this.app.listen(this.app.get('port'));
+    this.server.listen(this.app.get('port'));
     console.log(`Server listening on port ${this.app.get('port')}`);
   }
 }

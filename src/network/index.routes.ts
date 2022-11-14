@@ -12,7 +12,7 @@ import NotificacionRoutes from  "../components/notificacion/notificacion.network
 import CodigoQRRoutes from  "../components/codigoQR/codigoQR.network"; 
 
 export default (app: Express) => {
-  app.use('/healthcheck', healthCheckRoutes);
+  app.use('/', healthCheckRoutes);
   app.use('/user', UserRoutes);
   app.use('/sede', SedeRoutes);
   app.use('/mesa', MesaRoutes);
